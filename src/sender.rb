@@ -21,7 +21,7 @@ EventMachine.run do
 
  # exchange = channel.topic 'amq.topic', durable: true, auto_delete: true
 
-  channel.queue("foo.baz").bind(exchange, :routing_key => "foo.baz").subscribe do |headers, payload|
+  channel.queue("foo.bazz").bind(exchange, :routing_key => "foo.bazz").subscribe do |headers, payload|
     puts "An update for all articles: #{payload}, routing key is #{headers.routing_key}"
   end
 

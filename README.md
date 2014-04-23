@@ -1,7 +1,7 @@
-Simple Federated RabbitMQ experiment
-====================================
+Simple Federated RabbitMQ
+=========================
 
-This is the setup for a three node federated RabbitMQ installation.
+This is the setup for a three node federated RabbitMQ installation using Vagrant.
 
 
 Prerequisites
@@ -9,12 +9,12 @@ Prerequisites
 
 The following software needs to be installed:
 
-* Virtualbox (http://virtualbox.org)
-* Vagrant (http://vagrantup.com)
+* [Virtualbox](http://virtualbox.org)
+* [Vagrant](http://vagrantup.com)
 
 Download the precise32 box with
 
-    vagrant init precise32 http://files.vagrantup.com/precise32.box
+    vagrant init hashicorp/precise32 #http://files.vagrantup.com/precise32.box
 
 Installation
 ------------
@@ -63,8 +63,6 @@ This does the following:
 
 You will need to run a similar set of commands on each node to connect them as well.
 
-This is "new" way of doing things in RabbitMQ version 3, and something that isn't covered in most of the tutorials
-out there on the net.
 
 Run your federated setup
 ------------------------
@@ -86,30 +84,3 @@ In a fourth shell you can then send out messages to one of the brokers:
 
 You will see that the receivers on the different nodes will get the federated message depending on if they
 subscribe to that topic or not.
-
-
-Ressources
-----------
-
-Stuff that helped me along the way:
-
-The offical word:
-
-* http://www.rabbitmq.com/federation.html
-
-and the "what has changed in 3.0" text:
-
-* http://www.rabbitmq.com/blog/2012/11/19/breaking-things-with-rabbitmq-3-0/
-
-Both these links discuss pre Rabbit 3.0 - threw me off for a while
-
-* http://seletz.github.com/blog/2012/01/18/creating-a-rabbitmq-test-setup-with-vagrant/ - I used this method to
-  set up the vagrant boxes
-* https://github.com/jussiheinonen/rabbitmq-on-vagrant
-
-Getting the federated nodes to only listen to topic messages for them took me while. Copying/pasting from this
-example helped:
-
-* http://rubyamqp.info/articles/working_with_exchanges/#topic_exchanges
-
-

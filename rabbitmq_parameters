@@ -1,0 +1,59 @@
+# Rabbit1
+sudo rabbitmqctl set_parameter federation-upstream rabbit2 '{"uri":"amqp://192.168.40.11"}'
+sudo rabbitmqctl set_parameter federation-upstream rabbit3 '{"uri":"amqp://192.168.40.12"}'
+sudo rabbitmqctl set_parameter federation-upstream-set test '[{"upstream":"rabbit2"},{"upstream":"rabbit3"}]'
+sudo rabbitmqctl set_parameter federation local-nodename '"rabbit1"'
+sudo rabbitmqctl set_policy federate-me "^amq\." '{"federation-upstream-set":"test"}'
+
+# Rabbit2
+sudo rabbitmqctl set_parameter federation-upstream rabbit1 '{"uri":"amqp://192.168.40.10"}'
+sudo rabbitmqctl set_parameter federation-upstream rabbit3 '{"uri":"amqp://192.168.40.12"}'
+sudo rabbitmqctl set_parameter federation-upstream-set test '[{"upstream":"rabbit1"},{"upstream":"rabbit3"}]'
+sudo rabbitmqctl set_parameter federation local-nodename '"rabbit2"'
+sudo rabbitmqctl set_policy federate-me "^amq\." '{"federation-upstream-set":"test"}'
+
+# Rabbit3
+sudo rabbitmqctl set_parameter federation-upstream rabbit1 '{"uri":"amqp://192.168.40.10"}'
+sudo rabbitmqctl set_parameter federation-upstream rabbit2 '{"uri":"amqp://192.168.40.11"}'
+sudo rabbitmqctl set_parameter federation-upstream-set test '[{"upstream":"rabbit1"},{"upstream":"rabbit2"}]'
+sudo rabbitmqctl set_parameter federation local-nodename '"rabbit3"'
+sudo rabbitmqctl set_policy federate-me "^amq\." '{"federation-upstream-set":"test"}'
+
+
+
+#hxteo52
+rabbitmqctl set_parameter federation-upstream-set interucm '[]'
+rabbitmqctl set_parameter federation local-nodename '"hxteo52"'
+rabbitmqctl set_policy federate-me "interucm_status" '{"federation-upstream-set":"interucm"}'
+
+rabbitmqctl set_parameter federation-upstream hxteo53 '{"uri":"amqp://hxteo53.hexacta.com","expires":300000}'
+rabbitmqctl set_parameter federation-upstream-set interucm '[{"upstream":"hxteo53"}]'
+
+#hxteo53
+rabbitmqctl set_parameter federation-upstream-set interucm '[]'
+rabbitmqctl set_parameter federation local-nodename '"hxteo53"'
+rabbitmqctl set_policy federate-me "interucm_status" '{"federation-upstream-set":"interucm"}'
+
+rabbitmqctl set_parameter federation-upstream hxteo52 '{"uri":"amqp://hxteo52.hexacta.com"}'
+rabbitmqctl set_parameter federation-upstream-set interucm '[{"upstream":"hxteo52"}]'
+
+
+
+A: 10.10.88.100 a.teo.us.com
+B: 10.10.88.101 b.teo.us.com
+
+#Config Upstreams on A: 10.10.88.100 a.teo.us.com
+rabbitmqctl set_parameter federation-upstream-set interucm '[]'
+rabbitmqctl set_parameter federation local-nodename '"a"'
+rabbitmqctl set_policy federate-me "interucm_status" '{"federation-upstream-set":"interucm"}'
+
+rabbitmqctl set_parameter federation-upstream b '{"uri":"amqp://b.teo.us.com"}'
+rabbitmqctl set_parameter federation-upstream-set interucm '[{"upstream":"b"}]'
+
+#Config Upstreams on B: 10.10.88.101 b.teo.us.com
+rabbitmqctl set_parameter federation-upstream-set interucm '[]'
+rabbitmqctl set_parameter federation local-nodename '"b"'
+rabbitmqctl set_policy federate-me "interucm_status" '{"federation-upstream-set":"interucm"}'
+
+rabbitmqctl set_parameter federation-upstream a '{"uri":"amqp://a.teo.us.com"}'
+rabbitmqctl set_parameter federation-upstream-set interucm '[{"upstream":"a"}]'

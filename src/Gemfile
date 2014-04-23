@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'amqp', git: 'git://github.com/ruby-amqp/amqp.git'
+gem 'amqp'
 
 gem 'json'
 

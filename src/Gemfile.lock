@@ -1,22 +1,13 @@
-GIT
-  remote: git://github.com/ruby-amqp/amqp.git
-  revision: 3b62b96f45c65437918b2fe0fd57f419b24f0d13
-  specs:
-    amqp (1.1.0.pre)
-      amq-client (~> 1.0.0)
-      amq-protocol (~> 1.2.0)
-      eventmachine
-
 GEM
   remote: https://rubygems.org/
   specs:
-    amq-client (1.0.0)
-      amq-protocol (>= 1.2.0)
+    amq-protocol (1.9.0)
+    amqp (1.1.5)
+      amq-protocol (>= 1.9.0)
       eventmachine
-    amq-protocol (1.2.0)
-    awesome_print (1.1.0)
+    awesome_print (1.2.0)
     eventmachine (1.0.3)
-    json (1.7.7)
+    json (1.8.1)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     systemu (2.5.2)
@@ -27,7 +18,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  amqp!
+  amqp
   awesome_print
   json
   uuid

@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  box = "precise32"
+  box = "hashicorp/precise32"
 
   nodes = [
     { name: 'rabbit1', ip: '192.168.40.10', mgmt_port: 10010 },
@@ -28,6 +28,5 @@ Vagrant.configure("2") do |config|
     worker_config.vm.hostname = 'worker'
     worker_config.vm.synced_folder "src/", "/srv/"
   end
-
 
 end
