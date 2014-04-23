@@ -14,7 +14,7 @@ The following software needs to be installed:
 
 Download the precise32 box with
 
-    vagrant init hashicorp/precise32 #http://files.vagrantup.com/precise32.box
+    vagrant init hashicorp/precise32
 
 Installation
 ------------
